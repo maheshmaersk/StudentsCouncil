@@ -19,6 +19,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
+            android:id="@+id/tetEmail"
             android:layout_height="wrap_content"
             android:hint="Enter Email or Phone"
             android:inputType="text" />
@@ -36,6 +37,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/tetName"
             android:hint="Enter Name"
             android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -52,6 +54,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
+            android:id="@+id/tetPassword"
             android:layout_height="wrap_content"
             android:hint="Enter Password"
             android:inputType="textPassword" />
@@ -70,6 +73,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/tetConfirmPassword"
             android:hint="Re Enter Password"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
