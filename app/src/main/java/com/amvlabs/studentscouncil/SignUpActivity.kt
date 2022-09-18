@@ -18,7 +18,6 @@ class SignUpActivity : AppCompatActivity() {
         setContentView(binding.root)
 
          binding.btSignup.setOnClickListener {
-             throw RuntimeException("Test Crash")
          }
     }
 }
