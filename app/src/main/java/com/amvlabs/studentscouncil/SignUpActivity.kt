@@ -16,5 +16,9 @@ class SignUpActivity : AppCompatActivity() {
         this.window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+         binding.btSignup.setOnClickListener {
+             throw RuntimeException("Test Crash")
+         }
     }
 }

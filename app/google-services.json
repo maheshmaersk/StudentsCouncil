@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "471197537808",
+    "project_id": "studentcouncil-80bac",
+    "storage_bucket": "studentcouncil-80bac.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:471197537808:android:6eb3dd3fbb8a4b8db35c95",
+        "android_client_info": {
+          "package_name": "com.amvlabs.studentscouncil"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "471197537808-fade5atggobannn535r64lc399hn5iqj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWLy1aFgUz7xBnqEK_-4Huk_X6VHHbFpg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "471197537808-fade5atggobannn535r64lc399hn5iqj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
