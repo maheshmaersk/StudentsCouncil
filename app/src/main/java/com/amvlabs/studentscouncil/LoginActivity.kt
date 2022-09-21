@@ -2,26 +2,54 @@ package com.amvlabs.studentscouncil
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Window
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.amvlabs.studentscouncil.databinding.ActivityMainBinding
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.analytics
 import com.google.firebase.analytics.ktx.logEvent
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     private lateinit var firebaseAnalytics: FirebaseAnalytics
+    private lateinit var auth: FirebaseAuth
+    private val TAG = LoginActivity::class.java.simpleName
+
+
+    override fun onStart() {
+        super.onStart()
+        val currentUser = auth.currentUser
+        if (currentUser != null) {
+            navigateToHome()
+        }
+    }
+
+
+    private fun navigateToHome() {
+        val mIntent = Intent(binding.root.context, HomeActivity::class.java)
+        startActivity(mIntent)
+        finish()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        this.window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        this.window.setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
+        )
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        auth = Firebase.auth
+
         firebaseAnalytics = Firebase.analytics
         binding.btStudent.setOnClickListener {
 
@@ -52,12 +80,37 @@ class LoginActivity : AppCompatActivity() {
         }
 
         binding.btLogin.setOnClickListener {
+
+            val email = binding.inputUsername.text?.trim().toString()
+            val password = binding.inputPassword.text?.trim().toString()
+
+            Log.e("Username ", "${email} ${password}")
+
+            auth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this) { task ->
+                    if (task.isSuccessful) {
+                        // Sign in success, update UI with the signed-in user's information
+                        Log.d(TAG, "signInWithEmail:success")
+                        val user = auth.currentUser
+                        navigateToHome()
+                    } else {
+                        // If sign in fails, display a message to the user.
+                        Log.w(TAG, "signInWithEmail:failure", task.exception)
+                        Toast.makeText(
+                            baseContext, "Authentication failed.",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+
+
             firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_ITEM) {
                 param(FirebaseAnalytics.Param.ITEM_ID, "LoginScreen")
                 param(FirebaseAnalytics.Param.ITEM_NAME, "LoginClicked")
                 param(FirebaseAnalytics.Param.CONTENT_TYPE, "button")
             }
         }
+
 //
 //        binding.student.setOnClickListener {
 //

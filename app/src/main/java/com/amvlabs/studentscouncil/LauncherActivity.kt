@@ -37,6 +37,7 @@ class LauncherActivity : AppCompatActivity() {
         Handler(Looper.getMainLooper()).postDelayed({
             val mIntent = Intent(binding.root.context, LoginActivity::class.java)
             startActivity(mIntent)
+            finish()
         }, 3500)
     }
 

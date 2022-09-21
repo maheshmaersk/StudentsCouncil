@@ -38,8 +38,6 @@ class SignUpActivity : AppCompatActivity() {
 
 
         binding.btSignup.setOnClickListener {
-
-
             auth.createUserWithEmailAndPassword(
                 binding.tetEmail.text.toString(),
                 binding.tetPassword.text.toString()
