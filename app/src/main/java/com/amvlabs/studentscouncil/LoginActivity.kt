@@ -52,7 +52,6 @@ class LoginActivity : AppCompatActivity() {
 
         firebaseAnalytics = Firebase.analytics
         binding.btStudent.setOnClickListener {
-
             firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_ITEM) {
                 param(FirebaseAnalytics.Param.ITEM_ID, "LoginScreen")
                 param(FirebaseAnalytics.Param.ITEM_NAME, "Student")

@@ -7,6 +7,7 @@
     <string name="enter_password">Enter Password</string>
     <string name="enter_username">Enter Username</string>
     <string name="enter_email">Enter Email</string>
+    <string name="enter_description">Enter Description</string>
     <string name="council">Council</string>
     <string name="student">Student</string>
     <string name="don_t_have_account">Don\'t have account?</string>
@@ -19,4 +20,12 @@
     <string name="logout">logout</string>
     <string name="no_results_found">No Results Found</string>
     <string name="report_now">Report Now</string>
+    <string name="report">Report</string>
+
+    <string-array name="category">
+        <item>Select Category</item>
+        <item>Discipline</item>
+        <item>General Concerns</item>
+        <item>Council Admins</item>
+    </string-array>
 </resources>
