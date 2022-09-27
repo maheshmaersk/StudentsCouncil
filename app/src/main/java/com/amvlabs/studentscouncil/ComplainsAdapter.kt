@@ -1,72 +1,41 @@
 package com.amvlabs.studentscouncil
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.recyclerview.widget.RecyclerView
 import com.amvlabs.studentscouncil.models.UserDetail
 
-
-class ComplainsAdapter(
-    private val context: Context,
-    private val complainList: ArrayList<UserDetail>
-) :
-    BaseAdapter() {
-
-    private val inflater: LayoutInflater =
-        context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-
-    override fun getCount(): Int {
-        return complainList.size
+class ComplainsAdapter(private var userList: MutableList<UserDetail>) :
+    RecyclerView.Adapter<ComplainsAdapter.UserViewHolder>() {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
+        val vie =
+            LayoutInflater.from(parent.context).inflate(R.layout.user_info_adapter, parent, false)
+        return UserViewHolder(vie)
     }
 
-    override fun getItem(position: Int): Any {
-        return complainList[position]
+    override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
+        holder.title.text = userList[position].email
+        holder.status.text = userList[position].report_status.toString()
+        holder.description.text = userList[position].description
+    }
+
+    override fun getItemCount(): Int {
+        return userList.size
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return super.getItemViewType(position)
     }
 
     override fun getItemId(position: Int): Long {
-        return position.toLong()
+        return super.getItemId(position)
     }
 
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-
-        val mComplaintDetail = getItem(position) as UserDetail
-        val view: View
-        val holder: ViewHolder
-
-        if (convertView == null) {
-            view = inflater.inflate(R.layout.list_item_complain, parent, false)
-            holder = ViewHolder()
-
-            holder.title = view.findViewById<AppCompatTextView>(R.id.complainTitle)
-            holder.desc = view.findViewById<AppCompatTextView>(R.id.complainDescription)
-            holder.price = view.findViewById<AppCompatTextView>(R.id.complainStatus)
-
-            view.tag = holder
-        } else {
-            view = convertView
-            holder = convertView.tag as ViewHolder
-        }
-
-        val titleTextView = holder.title
-        val subtitleTextView = holder.desc
-        val detailTextView = holder.price
-
-        titleTextView.text = mComplaintDetail.category
-        subtitleTextView.text = mComplaintDetail.description
-        detailTextView.text = mComplaintDetail.report_status.toString()
-
-        return view
+    class UserViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        var title = view.findViewById<AppCompatTextView>(R.id.title)
+        var status = view.findViewById<AppCompatTextView>(R.id.description)
+        var description = view.findViewById<AppCompatTextView>(R.id.status)
     }
-
-
-    private class ViewHolder {
-        lateinit var title: AppCompatTextView
-        lateinit var desc: AppCompatTextView
-        lateinit var price: AppCompatTextView
-    }
-
-
 }

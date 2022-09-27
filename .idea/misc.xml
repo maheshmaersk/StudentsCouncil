@@ -5,15 +5,20 @@
       <map>
         <entry key="app/src/main/res/drawable-v24/circle.xml" value="0.189" />
         <entry key="app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_council.xml" value="0.27982456140350875" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_launcher.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.2714285714285714" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2714285714285714" />
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/complains_adapter.xml" value="0.11228070175438597" />
+        <entry key="app/src/main/res/layout/council_info_adapter.xml" value="0.27982456140350875" />
         <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.275" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.275" />
         <entry key="app/src/main/res/layout/fragment_notifications.xml" value="0.275" />
         <entry key="app/src/main/res/layout/fragment_report.xml" value="0.275" />
+        <entry key="app/src/main/res/layout/list_item_complain.xml" value="0.11315789473684211" />
+        <entry key="app/src/main/res/layout/user_info_adapter.xml" value="0.27982456140350875" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
         <entry key="app/src/main/res/menu/home_menu.xml" value="0.275" />
       </map>
