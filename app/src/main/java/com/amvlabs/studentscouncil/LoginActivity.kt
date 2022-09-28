@@ -28,7 +28,7 @@ class LoginActivity : AppCompatActivity() {
         super.onStart()
         val currentUser = auth.currentUser
         if (currentUser != null) {
-            navigateToHome()
+            validateUser(false)
         }
     }
 
@@ -99,32 +99,7 @@ class LoginActivity : AppCompatActivity() {
                     if (task.isSuccessful) {
                         // Sign in success, update UI with the signed-in user's information
                         Log.d(TAG, "signInWithEmail:success")
-                        val user = auth.currentUser
-                        user?.let {
-                            if ((it.uid.equals(
-                                    "b1AmFNoJ2GNQvcZi08MDeFlsfaF2",
-                                    true
-                                ) || it.uid.equals(
-                                    "c5rD4Xi8kfcuCMt9xHae057Evoq2",
-                                    true
-                                ) || it.uid.equals(
-                                    "7hBznOlvM0WzrnVGapUUWBZjo9I2",
-                                    true
-                                ))
-                            ) {
-                                if (isStudentSelected) {
-                                    Toast.makeText(
-                                        baseContext, "Oops Looks like student is selected",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
-                                } else {
-                                    navigateToCouncilHome()
-                                }
-
-                            } else {
-                                navigateToHome()
-                            }
-                        }
+                        validateUser(true)
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.w(TAG, "signInWithEmail:failure", task.exception)
@@ -143,17 +118,35 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
-//
-//        binding.student.setOnClickListener {
-//
-//            binding.councilGroup.visibility = View.GONE
-//            binding.studentGroup.visibility = View.VISIBLE
-//        }
-//        binding.council.setOnClickListener {
-//
-//            binding.councilGroup.visibility = View.VISIBLE
-//            binding.studentGroup.visibility = View.GONE
-//        }
+    }
 
+    private fun validateUser(validateCheck: Boolean) {
+        val user = auth.currentUser
+        user?.let {
+            if ((it.uid.equals(
+                    "b1AmFNoJ2GNQvcZi08MDeFlsfaF2",
+                    true
+                ) || it.uid.equals(
+                    "c5rD4Xi8kfcuCMt9xHae057Evoq2",
+                    true
+                ) || it.uid.equals(
+                    "7hBznOlvM0WzrnVGapUUWBZjo9I2",
+                    true
+                ))
+            ) {
+                if (validateCheck && isStudentSelected) {
+                    Toast.makeText(
+                        baseContext, "Oops Looks like student is selected",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    Firebase.auth.signOut()
+                } else {
+                    navigateToCouncilHome()
+                }
+
+            } else {
+                navigateToHome()
+            }
+        }
     }
 }

@@ -71,8 +71,7 @@ class HomeFragment : Fragment() {
     }
 
     fun loadRecyclerView(userDetailList: MutableList<UserDetail>) {
-        binding.reportsList.layoutManager =
-            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        binding.reportsList.layoutManager = LinearLayoutManager(context)
         binding.reportsList.adapter = RecycleUserAdapter(userDetailList)
 
         if (userDetailList.size > 0) {

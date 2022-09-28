@@ -1,8 +1,12 @@
 package com.amvlabs.studentscouncil
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.amvlabs.studentscouncil.databinding.ActivityCouncilBinding
@@ -53,6 +57,25 @@ class CouncilActivity : AppCompatActivity() {
                 Log.w(TAG, "Error getting documents.", exception)
             }
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.home_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.menuLogout) {
+            Firebase.auth.signOut()
+            val mIntent = Intent(binding.root.context, LoginActivity::class.java)
+            startActivity(mIntent)
+            finishAffinity()
+            return true
+        }
+        else {
+            return true
+        }
     }
 
     fun loadRecyclerView(userDetailList: MutableList<UserDetail>) {

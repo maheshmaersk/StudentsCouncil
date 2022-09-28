@@ -6,7 +6,7 @@
     <string name="login">Login</string>
     <string name="enter_password">Enter Password</string>
     <string name="enter_username">Enter Username</string>
-    <string name="enter_email">Enter Email</string>
+    <string name="enter_email">Enter Email / Username</string>
     <string name="enter_description">Enter Description</string>
     <string name="council">Council</string>
     <string name="student">Student</string>
