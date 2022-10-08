@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.amvlabs.studentscouncil.models.UserDetail
 
@@ -19,8 +20,36 @@ class RecycleUserAdapter(private var userList: MutableList<UserDetail>) :
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
         holder.title.text = userList[position].email
-        holder.status.text = userList[position].report_status.toString()
         holder.description.text = userList[position].description
+
+        userList[position].report_status?.let { position ->
+            if (position.toInt() == 1) {
+                holder.card.setCardBackgroundColor(
+                    ContextCompat.getColor(
+                        holder.title.context,
+                        R.color.orange
+                    )
+                )
+                holder.status.text = "In Progress"
+            } else if (position.toInt() == 2) {
+                holder.card.setCardBackgroundColor(
+                    ContextCompat.getColor(
+                        holder.title.context,
+                        R.color.green
+                    )
+                )
+                holder.status.text = "Solved"
+            } else if (position.toInt() == 3) {
+                holder.card.setCardBackgroundColor(
+                    ContextCompat.getColor(
+                        holder.title.context,
+                        R.color.red
+                    )
+                )
+                holder.status.text = "Rejected"
+            }
+        }
+
 
         holder.card.setOnClickListener {
             val mIntent = Intent(it.context, ReportResultActivity::class.java)
