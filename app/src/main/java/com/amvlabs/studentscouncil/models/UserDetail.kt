@@ -1,5 +1,7 @@
 package com.amvlabs.studentscouncil.models
 
+import java.io.Serializable
+
 data class UserDetail(
     val category: String,
     val description: String,
@@ -7,4 +9,5 @@ data class UserDetail(
     val userID: String,
     var report_description: String?,
     var report_status: Long? = 0,
-)
+    var documentID: String?,
+):Serializable

@@ -14,6 +14,9 @@
         android:theme="@style/Theme.StudentsCouncil"
         tools:targetApi="31">
         <activity
+            android:name=".ReportResultActivity"
+            android:exported="false" />
+        <activity
             android:name=".CouncilActivity"
             android:exported="false" />
         <activity

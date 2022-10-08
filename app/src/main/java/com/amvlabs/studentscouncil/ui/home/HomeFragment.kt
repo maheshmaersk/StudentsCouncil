@@ -54,6 +54,7 @@ class HomeFragment : Fragment() {
                                     email = data["email"] as String,
                                     report_description = data["report_description"] as String?,
                                     report_status = data["report_status"] as Long?,
+                                    documentID = document.id
                                 )
                             )
                         }
