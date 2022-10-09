@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.amvlabs.studentscouncil.ComplainsAdapter
 import com.amvlabs.studentscouncil.RecycleUserAdapter
 import com.amvlabs.studentscouncil.databinding.FragmentHomeBinding
 import com.amvlabs.studentscouncil.models.UserDetail
@@ -38,6 +39,7 @@ class HomeFragment : Fragment() {
         auth = Firebase.auth
         val currentUser = auth.currentUser
         val userDetailList = mutableListOf<UserDetail>()
+        binding.progressBar.visibility = View.VISIBLE
         db.collection("report")
             .get()
             .addOnSuccessListener { result ->
@@ -45,7 +47,11 @@ class HomeFragment : Fragment() {
                     Log.d(TAG, "${document.id} => ${document.data}")
                     val data: MutableMap<String, Any> = document.data
                     currentUser?.uid?.let {
-                        if (it.equals(data["userID"] as String?, true)) {
+                        if (it.equals(
+                                data["userID"] as String?,
+                                true
+                            ) && !(data["isDeleted"] as Boolean)
+                        ) {
                             userDetailList.add(
                                 UserDetail(
                                     category = data["category"] as String,
@@ -54,12 +60,14 @@ class HomeFragment : Fragment() {
                                     email = data["email"] as String,
                                     report_description = data["report_description"] as String?,
                                     report_status = data["report_status"] as Long?,
+                                    isDeleted = data["isDeleted"] as Boolean?,
                                     documentID = document.id
                                 )
                             )
                         }
                     }
                 }
+
                 loadRecyclerView(userDetailList)
                 Log.d(TAG, "${"Complains Added"} => ${userDetailList.size}")
             }
@@ -71,9 +79,10 @@ class HomeFragment : Fragment() {
         return root
     }
 
-    fun loadRecyclerView(userDetailList: MutableList<UserDetail>) {
+    private fun loadRecyclerView(userDetailList: MutableList<UserDetail>) {
+        binding.progressBar.visibility = View.GONE
         binding.reportsList.layoutManager = LinearLayoutManager(context)
-        binding.reportsList.adapter = RecycleUserAdapter(userDetailList)
+        binding.reportsList.adapter = ComplainsAdapter(userDetailList)
 
         if (userDetailList.size > 0) {
             binding.reportsList.visibility = View.VISIBLE

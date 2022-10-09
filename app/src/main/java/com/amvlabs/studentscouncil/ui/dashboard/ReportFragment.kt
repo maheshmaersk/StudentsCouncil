@@ -50,7 +50,8 @@ class ReportFragment : Fragment() {
                 "email" to binding.tetEmail.text.toString().trim(),
                 "userID" to currentUser?.uid,
                 "report_description" to "",
-                "report_status" to 0
+                "report_status" to 0,
+                "isDeleted" to false,
             )
             binding.progressBar.visibility = View.VISIBLE
             db.collection("report").add(user)

@@ -9,5 +9,6 @@ data class UserDetail(
     val userID: String,
     var report_description: String?,
     var report_status: Long? = 0,
+    var isDeleted: Boolean? = false,
     var documentID: String?,
 ):Serializable
